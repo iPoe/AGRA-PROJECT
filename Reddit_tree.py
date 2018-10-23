@@ -1,7 +1,7 @@
 from sys import stdin
 
 
-PUNTA,DCORCHETE,IZQCORCHETE = '>','[',']'
+PUNTA,RCORCHETE,LCORCHETE,SPACE,LINE = '>','[',']',' ','|'
 
 """AQUI DEBE IR LA CLASE ARBOL {indent_arrow}{body}[{author}|{ups}|{downs}|{comment_id}|{date}]"""
 #class Ftree(object):
@@ -17,6 +17,7 @@ def parseline():
 	print(pre)
 
 def read_line(line,lista):
+	global n
 	token = lista[0]
 	i = 0
 	cnt = 0
@@ -24,9 +25,16 @@ def read_line(line,lista):
 		i+=1
 		token = lista[cnt+2]
 	#Ahora debo leer al reves
-	n = len(line)
-	token1 = lista[n]
-	while token1 !=	''
+	n = len(line)-1
+	token1 = lista[-1]
+	date,comment_id,downs,ups, downs, author,body = None, None, None, None, None, None, None	
+	while token1 !=	RCORCHETE:
+		token1 = lista[n-1]
+		if token1 != LINE:
+
+
+
+
 
 
 
