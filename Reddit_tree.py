@@ -14,12 +14,22 @@ def leerflecha():
 		ans +=1
 		I+=2
 	return ans
-def leer
+def leerinfo():
+	global INPUT,I
+
+
 
 
 def next_token():
 	global INPUT,I
 	pos_tree = leerflecha()
+	
+
+def main():
+	for x in INPUT:
+		print(x)
+
+main()
 
 
 
@@ -65,14 +75,3 @@ def read_line(line,lista):
 			token1 = lista[n]
 """
 
-
-
-
-
-def main():
-	#Leer las lineas
-	parseline()
-
-
-
-main()
