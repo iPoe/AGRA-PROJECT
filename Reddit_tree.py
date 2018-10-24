@@ -26,11 +26,15 @@ def read_line(line,lista):
 		token = lista[cnt+2]
 	#Ahora debo leer al reves
 	n = len(line)-1
-	token1 = lista[-1]
+	token1 = lista[n]
 	date,comment_id,downs,ups, downs, author,body = None, None, None, None, None, None, None	
 	while token1 !=	RCORCHETE:
-		token1 = lista[n-1]
+
+		token1 = lista[n]
+		date = []
 		if token1 != LINE:
+
+
 
 
 
