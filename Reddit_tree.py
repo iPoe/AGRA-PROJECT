@@ -31,7 +31,7 @@ def leerinfo(id):
 		ans = 0
 		while INPUT[I]!= RAYA and has_next():
 			ans,I = int(chr(INPUT[I]))+ans*10,I+1
-			I+=1
+			
 		I+=1
 		return ans
 
