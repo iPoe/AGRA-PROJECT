@@ -1,64 +1,41 @@
-from sys import *
-setrecursionlimit(1000000)
+from sys import stdin
+def parse_line():
+	global line
+	tkn = None; i = 2 #leo ']'
+	while tkn != '[': 
+		tkn = line[-1*i]
+		i += 1
+	low, hi = len(line) - i + 2, len(line)-1
 
-INPUT,I = stdin.buffer.read(),0
-
-
-PUNTA, RAYA , LLAVEIZQ = ord('>'),ord('|'),ord('[')
-def has_next(): return I < len(INPUT)
-
-def leerflecha():
-	global INPUT,I
-	ans = 0
-	while INPUT[I]!= PUNTA:
-		ans +=1
-		I+=2
-	I+=1
-
-	return ans
-def leerinfo(id):
-	global INPUT,I
-	ans = None
-	if id == 1:
-		ans = []
-		while INPUT[I]!= LLAVEIZQ and has_next():
-			ans.append(chr(INPUT[I]))
-			I+=1
-		I+=1
-		return ans
-
-	elif id == 0:
-		ans = 0
-		while INPUT[I]!= RAYA and has_next():
-			ans,I = int(chr(INPUT[I]))+ans*10,I+1			
-		I+=1
-		return ans
-
-	else:
-		ans = []
-		while INPUT[I]!= RAYA and has_next():
-			ans.append(chr(INPUT[I]))
-			I+=1
-		I+=1
-		return ans
-
-
-def next_token():
-	global INPUT,I
-	pos_tree = leerflecha()
-	body = leerinfo(1)
-	author = leerinfo(2)
-	ups = leerinfo(0)
-	print(pos_tree)
-	print(body)
-	print(author)
-	print(ups)
-	return 0
+	nombre, ups, dwns, id, date = line[low:hi].split('|')
 	
+	while tkn != '>': 
+		tkn = line[-1*i]
+		i += 1
+
+	low, hi = len(line) - i + 2, low - 1
+
+	body = line[low:hi]
+
+	while i < len(line): i += 1
+
+	prof = low//2
+
+	return (prof, body, nombre, ups, dwns, id, date)
 
 def main():
-	a = next_token()
+	global line, PREORDER
+	line = stdin.readline().strip()
+	PREORDER = list() # suponiendo un foro
+	while(len(line) != 0):
+		prof, body, nombre, ups, dwns, id, date = parse_line()
+		PREORDER.append(id)
+		
+		line = stdin.readline().strip()
 	
+	for id in PREORDER[:len(PREORDER)-1]:
+		print(id, end = ' ')
+	print(PREORDER[-1])
 
 main()
 
