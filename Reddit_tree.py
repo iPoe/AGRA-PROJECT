@@ -37,20 +37,26 @@ def parse_line():
 	prof = low//2
 	return (prof, body, nombre, ups, dwns, id, date)
 I=0
-def create(d):
+def create():
 	global I
 	Arbol=None
-	while I<len(PREORDER):
-			j=I
-			childs=[]			
-			while I<len(PREORDER) and d+1== PREORDER[I][0]:
+	if I<len(PREORDER):
+			j=I			
+			childs=[]	#Esta condición es suficiente para que cuando tengan depths == se crea otro hijo		
+			while I+1<len(PREORDER) and PREORDER[j][0]!=PREORDER[I+1][0]:
 				I+=1
-				t=create(d+1)
-				if t!= None:
-					childs.append(t)				
-			I+=1
+				if PREORDER[j][0]+1== PREORDER[I][0]:
+					
+					t=create()
+					if t!= None:
+						childs.append(t)
+			I=j
+				
+
 			Arbol=Tree(PREORDER[j][1],childs)
+
 			
+						
 	return Arbol
 
 def main():
@@ -59,12 +65,9 @@ def main():
 	PREORDER = list() # suponiendo un foro
 	while(len(line) != 0):
 		prof, body, nombre, ups, dwns, id, date = parse_line() #cada vez que haya una profundidad 0 debo reiniciar el preorden y el arbol
-		PREORDER.append((prof,id))
-
-		
+		PREORDER.append((prof,id))		
 		line = stdin.readline().strip()
-
-	Arbol=create(0)
+	Arbol=create()
 	Arbol.imprimir()
 	"""
 	for id in PREORDER[:len(PREORDER)-1]:
