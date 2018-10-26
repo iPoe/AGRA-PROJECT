@@ -45,17 +45,13 @@ def create():
 			childs=[]	#Esta condición es suficiente para que cuando tengan depths == se crea otro hijo		
 			while I+1<len(PREORDER) and PREORDER[j][0]!=PREORDER[I+1][0]:
 				I+=1
-				if PREORDER[j][0]+1== PREORDER[I][0]:
-					
+				if PREORDER[j][0]+1== PREORDER[I][0]:					
 					t=create()
 					if t!= None:
 						childs.append(t)
 			I=j
-				
 
-			Arbol=Tree(PREORDER[j][1],childs)
-
-			
+			Arbol=Tree(PREORDER[j][1],childs)		
 						
 	return Arbol
 
