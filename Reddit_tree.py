@@ -1,4 +1,12 @@
 from sys import stdin
+"""
+class author(object):
+	def __init__(self,name,comments):
+		self.__numcomments = len(posts)
+		self.__comments = comments
+		self.__author = name
+"""
+
 class Tree(object):
 	def __init__(self,data,A,up,down):
 		self.__len=len(A)
@@ -51,34 +59,32 @@ def create():
 					if t!= None:
 						childs.append(t)
 			I=j
-
-			Arbol=Tree(PREORDER[j][1],childs,PREORDER[j][2],PREORDER[j][3])		
-						
+			Arbol=Tree(PREORDER[j][1],childs,PREORDER[j][2],PREORDER[j][3])						
 	return Arbol
 
 def main():
 	global line, PREORDER
 	line = stdin.readline().strip()
-	PREORDER = list() # suponiendo un foro	
+	PREORDER = list() # suponiendo un foro
+	authors = {}	
 	while(len(line) != 0):
 		prof, body, nombre, ups, dwns, id, date = parse_line() #cada vez que haya una profundidad 0 debo reiniciar el preorden y el arbol
 		PREORDER.append((int(prof),id,int(ups),int(dwns)))		
-		line = stdin.readline().strip()
-		"""
-		if authors.get('nombre')!=None:
-			authors['nombre']=1
+		line = stdin.readline().strip()		
+		if authors.get(nombre)==None:
+			authors[nombre]=1
 		else:
-			authors['nombre']+=1
-		"""
-
-	Arbol=create()
-	
+			authors[nombre]+=1
+		
+	Arbol=create()	
 	Arbol.contarlikes()
 	for id in PREORDER[:len(PREORDER)-1]:
 		print(id[1], end = ' ')
 	print(PREORDER[-1])
-
 	Arbol.imprimir()
+	s = sorted(authors.items(),key=lambda x: x[0])	
+	for key,value in sorted(s,key=lambda x:x[1],reverse=True):
+		print(key,value)
 	
 
 main()
